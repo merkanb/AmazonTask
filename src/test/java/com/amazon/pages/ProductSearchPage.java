@@ -64,9 +64,7 @@ public class ProductSearchPage extends BasePage {
         searchBar.sendKeys(product);
 //        searchIcon.click();
         searchIcon.sendKeys(Keys.ENTER);
-
     }
-
 
     public void verifySearchResult(String product) {
 //        Assert.assertEquals(product, searchResultMessage.getText());
@@ -80,6 +78,9 @@ public class ProductSearchPage extends BasePage {
         System.out.println(firstProductInSearchResults.getText());
         firstProductInSearchResults.click();
         productPage.addToListButton.click();     // if we dont mention explicitly add to which list, will add to default (1st) List...
+        productPage.continue_shopping.click();
+
+//        productPage.viewYourList.click();
 //        productPage.wishListDropDown.click();  // if we have >1 list, and want to add to at a particular one, then can use this two lines
 //        productPage.selectYourList.click();
     }

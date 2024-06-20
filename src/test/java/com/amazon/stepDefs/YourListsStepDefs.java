@@ -1,11 +1,8 @@
 package com.amazon.stepDefs;
 
-import com.amazon.pages.BasePage;
 import com.amazon.pages.YourListsPage;
-import com.amazon.utilities.Driver;
 import io.cucumber.java.en.And;
 import io.cucumber.java.en.Given;
-import org.openqa.selenium.By;
 
 public class YourListsStepDefs {
 
@@ -26,8 +23,8 @@ public class YourListsStepDefs {
 
     @And("the user delete the list from Homepage {string}")
     public void theUserDeleteTheListFromHomepage(String listName) {
-        yourListsPage.deleteTheList(listName);
-//        yourListsPage.deleteTheListFromHomepage(listName);
+//        yourListsPage.deleteTheList(listName);
+        yourListsPage.deleteTheListFromHomepage(listName);
     }
 
 

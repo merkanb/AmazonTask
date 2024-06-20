@@ -5,7 +5,11 @@ import com.amazon.utilities.Driver;
 import org.openqa.selenium.*;
 import org.openqa.selenium.support.FindBy;
 
+import java.time.Duration;
+
 public class YourListsPage extends BasePage {
+
+    LoginPage loginPage = new LoginPage();
 
     @FindBy(xpath = "//span[contains(text(), 'Create a List')]/preceding-sibling::*")
     public WebElement createAListButton;
@@ -26,16 +30,19 @@ public class YourListsPage extends BasePage {
     public WebElement deleteListButton;
 
 
-//        @FindBy(xpath = "//span[@data-action='list-delete-confirm']")
+    //        @FindBy(xpath = "//span[@data-action='list-delete-confirm']")
 //        @FindBy(id = "list-delete-confirm")
 //        @FindBy(id = "list-delete-confirm-announce")
 //        @FindBy(name = "submit.save")
 //    @FindBy(xpath = "//span[@data-action='list-delete-confirm']/span/span")
 //    @FindBy(xpath = "//span[@data-action='list-delete-confirm']/span/span/span")
+
+//    @FindBy(xpath = "//input[@name='submit.save']/../../..")
+//    @FindBy(xpath = "//input[@name='submit.save']/../..")
+//    @FindBy(xpath = "//input[@name='submit.save']/..")
     @FindBy(xpath = "//input[@name='submit.save']")
-
+//    @FindBy(xpath = "//input[@name='submit.save']/following-sibling::span")
     public WebElement deleteSubmitButton;
-
 
 
     public void createAList(String listName) {
@@ -58,20 +65,26 @@ public class YourListsPage extends BasePage {
     ProductPage productPage = new ProductPage();
 
     public void deleteTheList(String nameOfTheList) {
-        productPage.viewYourList.click();
-        Driver.get().findElement(By.xpath("//span[contains(text(),'" + nameOfTheList + "')]")).click();
+        BrowserUtils.hover(helloUser);
+        YourLists.click();
+        WebElement willDeleted = Driver.get().findElement(By.xpath("//span[contains(text(),'" + nameOfTheList + "')]"));
+        System.out.println("willDeleted.getText() = " + willDeleted.getText());
+        willDeleted.click();
         moreOptions.click();
         manageList.click();
         BrowserUtils.hover(deleteListButton);
         deleteListButton.click();
-        deleteSubmitButton.click();
+//        deleteSubmitButton.click();
+//        deleteSubmitButton.sendKeys(Keys.ENTER);
+        BrowserUtils.clickWithJS(deleteSubmitButton);
     }
 
-    public void deleteTheListFromHomepage(String listName){
+    public void deleteTheListFromHomepage(String listName) {
         BrowserUtils.hover(helloUser);
+        YourLists.click();
 //        Driver.get().findElement(By.xpath("//span[text()='"+listName+"']"));
-        Driver.get().findElement(By.cssSelector("#nav-al-title"));
-        Driver.get().findElement(By.xpath("//span[contains(text(),'"+listName+"')]")).click();
+//        Driver.get().findElement(By.cssSelector("#nav-al-title"));
+        Driver.get().findElement(By.xpath("//span[contains(text(),'" + listName + "')]")).click();
         moreOptions.click();
         manageList.click();
         BrowserUtils.hover(deleteListButton);
@@ -79,9 +92,7 @@ public class YourListsPage extends BasePage {
         BrowserUtils.clickWithJS(deleteListButton);
         deleteSubmitButton.click();             // ????
 //        BrowserUtils.clickWithJS(deleteSubmitButton);
-        BrowserUtils.waitFor(2);
     }
-
 
 
 }

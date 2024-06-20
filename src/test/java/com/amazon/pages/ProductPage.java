@@ -21,6 +21,8 @@ public class ProductPage extends BasePage{
     @FindBy(xpath = "//a[text()='View your List']")
     public WebElement viewYourList;       // after product added to list, there is page opens, in it we can see this viewYourList WE
 
+    @FindBy(css = "#continue-shopping")
+    public WebElement continue_shopping;
 
 
 
@@ -28,4 +30,3 @@ public class ProductPage extends BasePage{
 
 
 
-   //img[@alt='My Shopping List']

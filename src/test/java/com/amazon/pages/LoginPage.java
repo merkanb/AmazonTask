@@ -30,7 +30,7 @@ public class LoginPage extends BasePage {
     @FindBy(xpath = "//span[text()='Sign Out']")
     public WebElement signOut;
 
-    @FindBy(css = ".a-spacing-small")
+    @FindBy(css = "#nav-link-accountList-nav-line-1")
     public WebElement signInWindow;
 
 
@@ -47,11 +47,11 @@ public class LoginPage extends BasePage {
 
     }
 
-    public void signOut(){
-        amazonHomePage.click();
+    public void signOut() {
         BrowserUtils.hover(helloUser);
         signOut.click();
-        Assert.assertTrue(signInWindow.getText().contains("Sign in"));
+        amazonHomePageAfterSignOut.click();
+        Assert.assertTrue(signInWindow.getText().contains("sign in"));
     }
 
 }

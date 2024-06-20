@@ -13,11 +13,10 @@ import java.time.Duration;
 
 public class Hooks {
 
-
     @Before
-
     public void setup() {
         Driver.get().manage().timeouts().implicitlyWait(Duration.ofSeconds(15));
+        Driver.get().manage().window().maximize();
     }
 
 
@@ -28,7 +27,6 @@ public class Hooks {
             scenario.attach(screenshot,"image/png","screenshot");
         }
         Driver.closeDriver();
-        BrowserUtils.waitFor(3);
     }
 
 

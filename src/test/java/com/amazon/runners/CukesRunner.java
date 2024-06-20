@@ -12,8 +12,8 @@ import org.junit.runner.RunWith;
                 "rerun:target/rerun.txt"},            // create a rerun file, define failed TC in it
         features = "src/test/resources/Features",
         glue = "com/amazon/stepDefs",
-       dryRun = true,
-//        dryRun = false,
+//       dryRun = true,
+        dryRun = false,
 
         tags = "@wip"
 
