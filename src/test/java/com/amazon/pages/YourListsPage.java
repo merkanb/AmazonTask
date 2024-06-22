@@ -11,7 +11,7 @@ public class YourListsPage extends BasePage {
 
     LoginPage loginPage = new LoginPage();
 
-    @FindBy(xpath = "//span[contains(text(), 'Create a List')]/preceding-sibling::*")
+    @FindBy(xpath = "//span[contains(text(),'Create a List')]/preceding-sibling::*")
     public WebElement createAListButton;
 
     @FindBy(css = "#list-name")
@@ -51,7 +51,7 @@ public class YourListsPage extends BasePage {
         try {     // because if already created one list next createAListButton will not be there and throw NoSuchElementException
             createAListButton.click();
         } catch (NoSuchElementException nse) {
-            System.out.println("NoSuchElementException caught, there must be list created already..");
+            System.out.println("Try Catch Exception Note: NoSuchElementException caught, there must be a list created already..");
         }
         listNameInput.clear();
         listNameInput.sendKeys(listName);
@@ -68,7 +68,6 @@ public class YourListsPage extends BasePage {
         BrowserUtils.hover(helloUser);
         YourLists.click();
         WebElement willDeleted = Driver.get().findElement(By.xpath("//span[contains(text(),'" + nameOfTheList + "')]"));
-        System.out.println("willDeleted.getText() = " + willDeleted.getText());
         willDeleted.click();
         moreOptions.click();
         manageList.click();
@@ -76,22 +75,22 @@ public class YourListsPage extends BasePage {
         deleteListButton.click();
 //        deleteSubmitButton.click();
 //        deleteSubmitButton.sendKeys(Keys.ENTER);
-        BrowserUtils.clickWithJS(deleteSubmitButton);
+        BrowserUtils.waitFor(2);
+        deleteSubmitButton.click();
+//        BrowserUtils.clickWithJS(deleteSubmitButton);
+        BrowserUtils.waitFor(2);
     }
 
     public void deleteTheListFromHomepage(String listName) {
         BrowserUtils.hover(helloUser);
         YourLists.click();
-//        Driver.get().findElement(By.xpath("//span[text()='"+listName+"']"));
-//        Driver.get().findElement(By.cssSelector("#nav-al-title"));
         Driver.get().findElement(By.xpath("//span[contains(text(),'" + listName + "')]")).click();
         moreOptions.click();
         manageList.click();
         BrowserUtils.hover(deleteListButton);
 //        deleteListButton.click();
         BrowserUtils.clickWithJS(deleteListButton);
-        deleteSubmitButton.click();             // ????
-//        BrowserUtils.clickWithJS(deleteSubmitButton);
+        deleteSubmitButton.click();
     }
 
 

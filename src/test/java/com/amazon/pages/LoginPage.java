@@ -35,7 +35,6 @@ public class LoginPage extends BasePage {
 
     public void login() {
         BrowserUtils.hover(helloUser);
-        System.out.println("helloUser.getText() = " + helloUser.getText());
         signInButton.click();
         emailInput.sendKeys(ConfigurationReader.get("email"));
         continueButton.click();

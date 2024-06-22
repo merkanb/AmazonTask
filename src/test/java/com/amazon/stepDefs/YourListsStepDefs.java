@@ -11,7 +11,7 @@ public class YourListsStepDefs {
 
     @Given("the user creates a list named as {string}")
     public void the_user_creates_a_list_named_as(String listName) {
-        yourListsPage.createAList(listName);        // has o GOOD method
+        yourListsPage.createAList(listName);
     }
 
 

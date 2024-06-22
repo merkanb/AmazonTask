@@ -67,14 +67,10 @@ public class ProductSearchPage extends BasePage {
     }
 
     public void verifySearchResult(String product) {
-//        Assert.assertEquals(product, searchResultMessage.getText());
-//        Assert.assertEquals("\"" + product + "\"", searchResultMessage.getText());
         Assert.assertTrue(searchResultMessage.getText().contains(product));
     }
 
     public void clickFirstProduct() {
-//        BrowserUtils.getPrintElementsText(searchProductList);            // MEB
-        System.out.println(firstProductInSearchResults.getText());
         firstProductInSearchResults.click();
         productPage.addToListButton.click();     // if we dont mention explicitly add to which list, will add to default (1st) List...
         productPage.continue_shopping.click();

@@ -9,7 +9,6 @@ import javax.swing.text.html.CSS;
 public class ProductPage extends BasePage{
 
     @FindBy(id="add-to-wishlist-button-submit")
-//    @FindBy(css = ".a-button-text.a-text-left")
     public WebElement addToListButton;
 
     @FindBy(css = "#wishListDropDown")
