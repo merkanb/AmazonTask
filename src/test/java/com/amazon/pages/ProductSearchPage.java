@@ -72,7 +72,6 @@ public class ProductSearchPage extends BasePage {
         Assert.assertTrue(searchResultMessage.getText().contains(product));
     }
 
-
     public void clickFirstProduct() {
 //        BrowserUtils.getPrintElementsText(searchProductList);            // MEB
         System.out.println(firstProductInSearchResults.getText());

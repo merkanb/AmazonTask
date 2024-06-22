@@ -15,11 +15,11 @@ import org.openqa.selenium.safari.SafariDriver;
 
 public class Driver {
 
-    private Driver(){}
+    private Driver(){}                // this Driver will be closed in Hooks After method --> Driver.closeDriver();
 
     private static WebDriver driver;
 
-    public static WebDriver get(){
+    public static WebDriver get(){              // this get() --> returns WebDriver obj. choose by getting from properties
         if(driver == null){
             String browser = ConfigurationReader.get("browser");
             switch(browser){
@@ -55,7 +55,7 @@ public class Driver {
         return driver;
     }
 
-    public static void closeDriver() {
+    public static void closeDriver() {          // this closeDriver() --> closes WebDriver obj.
         if (driver != null) {
             driver.quit();
             driver = null;

@@ -34,17 +34,15 @@ public class LoginPage extends BasePage {
     public WebElement signInWindow;
 
 
-    HomePage homePage = new HomePage();
-
     public void login() {
         BrowserUtils.hover(helloUser);
+        System.out.println("helloUser.getText() = " + helloUser.getText());
         signInButton.click();
         emailInput.sendKeys(ConfigurationReader.get("email"));
         continueButton.click();
         passwordInput.sendKeys(ConfigurationReader.get("password"));
         signInSubmit.click();
-        Assert.assertTrue(!homePage.helloUser.getText().contains("sign in"));
-
+        Assert.assertTrue(!helloUser.getText().contains("sign in"));
     }
 
     public void signOut() {

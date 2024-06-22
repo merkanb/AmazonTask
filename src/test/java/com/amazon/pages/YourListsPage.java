@@ -30,7 +30,7 @@ public class YourListsPage extends BasePage {
     public WebElement deleteListButton;
 
 
-    //        @FindBy(xpath = "//span[@data-action='list-delete-confirm']")
+//        @FindBy(xpath = "//span[@data-action='list-delete-confirm']")
 //        @FindBy(id = "list-delete-confirm")
 //        @FindBy(id = "list-delete-confirm-announce")
 //        @FindBy(name = "submit.save")
