@@ -33,7 +33,6 @@ public class LoginPage extends BasePage {
     @FindBy(css = "#nav-link-accountList-nav-line-1")
     public WebElement signInWindow;
 
-
     public void login() {
         BrowserUtils.hover(helloUser);
         System.out.println("helloUser.getText() = " + helloUser.getText());
