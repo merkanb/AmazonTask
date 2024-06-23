@@ -50,5 +50,4 @@ public class LoginPage extends BasePage {
         Assert.assertTrue(signInWindow.getText().contains("sign in"));
     }
 
-
 }

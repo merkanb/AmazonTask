@@ -1,6 +1,7 @@
 package com.amazon.stepDefs;
 
 import com.amazon.pages.ProductSearchPage;
+import io.cucumber.java.en.And;
 import io.cucumber.java.en.Given;
 
 public class ProductSearchStepDefs {
@@ -24,5 +25,13 @@ public class ProductSearchStepDefs {
     }
 
 
+    @And("the user selects the number {string} product and adds it to the list")
+    public void theUserSelectsTheNumberProductAndAddsItToTheList(String number) {
+        productSearchPage.addProductWithNumberInSearchResults(number);
+    }
 
+    @And("the user selects a random product and adds it to the list")
+    public void theUserSelectsARandomProductAndAddsItToTheList() {
+        productSearchPage.addRandomProductInSearchResults();
+    }
 }

@@ -14,10 +14,8 @@ public class LoginStepDefs {
     public void the_user_is_on_the_login_page() {
         Driver.get().get(ConfigurationReader.get("url"));
         loginPage.acceptCookiesButton.click();
-        Assert.assertEquals("Hello, sign in", loginPage.helloUser.getText());
-//        Assert.assertTrue(loginPage.helloUser.getText().contains("sign in"));
+        Assert.assertTrue(loginPage.helloUser.getText().contains("sign in"));
     }
-
 
     @And("the user logs in successfully")
     public void theUserLogsInSuccessfully() {

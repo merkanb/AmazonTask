@@ -1,7 +1,5 @@
 package com.amazon.stepDefs;
 
-
-import com.amazon.utilities.BrowserUtils;
 import com.amazon.utilities.Driver;
 import io.cucumber.java.After;
 import io.cucumber.java.Before;

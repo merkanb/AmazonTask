@@ -32,10 +32,13 @@ Feature: Amazon E2E Test Feature
   Scenario:Amazon Search result
     Given the user is on the login page
     And the user logs in successfully
-    When the user creates a list named as "My Shopping List_1"
-    And the user selects product category "Computers & Accessories" for search
-    And the user searches for product "hp laptop"
-    And the user selects the first product and adds it to the list
+    When the user creates a list named as "Family Wish List"
+    When the user creates a list named as "Kids Wish List"
+    And the user selects product category "Home & Kitchen" for search
+    And the user searches for product "kettle"
+    And the user selects the number "2" product and adds it to the list
+    And the user deletes the list "Kids Wish List"
+    And the user deletes the list "Family Wish List"
     And the user logs out
 
 
@@ -43,12 +46,21 @@ Feature: Amazon E2E Test Feature
   Scenario:Amazon Search result_2
     Given the user is on the login page
     And the user logs in successfully
-    When the user creates a list named as "My Shopping List2"
-    And the user selects product category "Computers & Accessories" for search
-    And the user searches for product "hp laptop"
-    And the user selects the first product and adds it to the list
-#    And the user delete the list from Homepage "My Shopping List2"
+    When the user creates a list named as "Company Wish List"
+    And the user selects product category "Books" for search
+    And the user searches for product "autobiography books bestsellers"
+    And the user selects the number "3" product and adds it to the list
+    And the user deletes the list from Homepage "Company Wish List"
     And the user logs out
 
-
+  @testRandomProduct
+  Scenario:Amazon Search result_2
+    Given the user is on the login page
+    And the user logs in successfully
+    When the user creates a list named as "Company Wish List"
+    And the user selects product category "Books" for search
+    And the user searches for product "autobiography books bestsellers"
+    And the user selects a random product and adds it to the list
+    And the user deletes the list from Homepage "Company Wish List"
+    And the user logs out
 

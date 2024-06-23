@@ -1,7 +1,9 @@
 package com.amazon.pages;
 
 import com.amazon.utilities.BrowserUtils;
+import com.amazon.utilities.Driver;
 import org.junit.Assert;
+import org.openqa.selenium.By;
 import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -9,6 +11,7 @@ import org.openqa.selenium.support.FindBys;
 import org.openqa.selenium.support.ui.Select;
 
 import java.util.List;
+import java.util.Random;
 
 public class ProductSearchPage extends BasePage {
 
@@ -25,25 +28,11 @@ public class ProductSearchPage extends BasePage {
     public WebElement searchResultMessage;
 
 
-// 1st way  - it is not working, have to work on it
-//        @FindBys({
-//            @FindBy(xpath = "//*[text()='HP']"),            // and   --> logical AND
-//            @FindBy(xpath = "//*[text()='Laptop']")
-//    })
-
-    // 2nd way
-    @FindBy(xpath = "(//span[@class='a-size-medium a-color-base a-text-normal'][contains(text(),'HP') or contains(text(),'Laptop')or contains(text(),'laptop')])[1]")
-//span[@class='a-size-medium a-color-base a-text-normal'][contains(text(),'HP') or contains(text(),'Laptop')or contains(text(),'laptop')]
-    // up this is the whole results/list
-
-// 3rd way:  try to find better locator to locate the search results
-// however, this one is good in terms of practising the "ignore case" in Xpath
-//    @FindBy(xpath = "(//h2/a/span[contains(translate(., 'ABCDEFGHIJKLMNOPQRSTUVWXYZ', 'abcdefghijklmnopqrstuvwxyz'), 'hp laptop')])[2]")
-    // this locator search WEs for provided String and ignore case sensitivity (if contains String & ignore case sens.)
-    // this focus on String 'hp laptop' and ignore case sensitivity, however search may contain some results with other options...!!!
-// span[@class='a-size-medium a-color-base a-text-normal'][ contains(translate(.,'ABCDEFGHIJKLMNOPQRSTUVWXYZ', 'abcdefghijklmnopqrstuvwxyz'),'laptop')or contains(translate(.,'ABCDEFGHIJKLMNOPQRSTUVWXYZ', 'abcdefghijklmnopqrstuvwxyz'),HP)]
-    // up this line refers to whole list, in order to select 1st one, need to modify -->  (this path)[1]
+    @FindBy(xpath = "(//div[@data-component-type='s-search-result'])[1]//span[@class='a-size-medium a-color-base a-text-normal']")
     public WebElement firstProductInSearchResults;
+
+    @FindBy(xpath = "//div[@data-component-type='s-search-result']//span[@class='a-size-medium a-color-base a-text-normal']")
+    public List<WebElement> productList;
 
 
     @FindBy(xpath = "//span[@class='a-size-medium a-color-base a-text-normal'][contains(text(),'HP') or contains(text(),'Laptop')or contains(text(),'laptop')]")
@@ -55,14 +44,11 @@ public class ProductSearchPage extends BasePage {
     public void selectCategoryForSearch(String category) {
         Select select = new Select(categoryDropdown);
         select.selectByVisibleText(category);
-        // verify category is actually selected)
-//        select.getFirstSelectedOption();  // return the WE which is selected, we can use for verify after SELECTION in Dropdown
         Assert.assertEquals(category, select.getFirstSelectedOption().getText());
     }
 
     public void searchProduct(String product) {
         searchBar.sendKeys(product);
-//        searchIcon.click();
         searchIcon.sendKeys(Keys.ENTER);
     }
 
@@ -72,13 +58,37 @@ public class ProductSearchPage extends BasePage {
 
     public void clickFirstProduct() {
         firstProductInSearchResults.click();
-        productPage.addToListButton.click();     // if we dont mention explicitly add to which list, will add to default (1st) List...
+        BrowserUtils.waitFor(2);
+        productPage.addToListButton.click();     // if we do not mention explicitly add to which list, will add to default (1st) List...
+        BrowserUtils.waitFor(2);
         productPage.continue_shopping.click();
+    }
+
+    public void addProductWithNumberInSearchResults(String number) {
+        WebElement selectedProduct = Driver.get().findElement(By.xpath("(//div[@data-component-type='s-search-result'])[" + number + "]//span[@class='a-size-medium a-color-base a-text-normal']"));
+        selectedProduct.click();
+        BrowserUtils.waitFor(2);
+        productPage.addToListButton.click();     // if we do not mention explicitly add to which list, will add to default (1st) List...
+        BrowserUtils.waitFor(2);
+        productPage.continue_shopping.click();
+    }
+
+    Random random = new Random();
+
+    public void addRandomProductInSearchResults() {
+        int randomSelectProductIndex = random.nextInt(productList.size() - 1);
+        WebElement randomSelectedProduct = Driver.get().findElement(By.xpath("(//div[@data-component-type='s-search-result'])[" + randomSelectProductIndex + "]//span[@class='a-size-medium a-color-base a-text-normal']"));
+        randomSelectedProduct.click();
+        BrowserUtils.waitFor(2);
+        productPage.addToListButton.click();     // if we do not mention explicitly add to which list, will add to default (1st) List...
+        BrowserUtils.waitFor(2);
+        productPage.continue_shopping.click();
+    }
+
 
 //        productPage.viewYourList.click();
 //        productPage.wishListDropDown.click();  // if we have >1 list, and want to add to at a particular one, then can use this two lines
 //        productPage.selectYourList.click();
-    }
 
 
 }
