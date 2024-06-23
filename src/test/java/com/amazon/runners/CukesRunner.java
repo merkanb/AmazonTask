@@ -11,11 +11,11 @@ import org.junit.runner.RunWith;
                 "html:target/default-html-reports.html",
                 "rerun:target/rerun.txt"},
         features = "src/test/resources/Features",
-        glue = "com/amazon/stepDefs",
+        glue = "com/amazon/stepDefinitions",
 //       dryRun = true,
         dryRun = false,
 
-        tags = "@addFirst"
+        tags = "@addRandom"
 
 )
 public class CukesRunner {

@@ -1,4 +1,4 @@
-package com.amazon.stepDefs;
+package com.amazon.stepDefinitions;
 
 import com.amazon.pages.ProductSearchPage;
 import io.cucumber.java.en.And;

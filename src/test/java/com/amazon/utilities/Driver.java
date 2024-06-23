@@ -1,6 +1,5 @@
 package com.amazon.utilities;
 
-
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebDriverException;
 import org.openqa.selenium.chrome.ChromeDriver;
@@ -11,15 +10,13 @@ import org.openqa.selenium.firefox.FirefoxOptions;
 import org.openqa.selenium.ie.InternetExplorerDriver;
 import org.openqa.selenium.safari.SafariDriver;
 
-
-
 public class Driver {
 
-    private Driver(){}                // this Driver will be closed in Hooks After method --> Driver.closeDriver();
+    private Driver(){}
 
     private static WebDriver driver;
 
-    public static WebDriver get(){              // this get() --> returns WebDriver obj. choose by getting from properties
+    public static WebDriver get(){
         if(driver == null){
             String browser = ConfigurationReader.get("browser");
             switch(browser){
@@ -55,12 +52,11 @@ public class Driver {
         return driver;
     }
 
-    public static void closeDriver() {          // this closeDriver() --> closes WebDriver obj.
+    public static void closeDriver() {
         if (driver != null) {
             driver.quit();
             driver = null;
         }
     }
-
 }
 

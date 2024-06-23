@@ -1,4 +1,4 @@
-package com.amazon.stepDefs;
+package com.amazon.stepDefinitions;
 
 import com.amazon.utilities.Driver;
 import io.cucumber.java.After;

@@ -47,6 +47,7 @@ public class YourListsPage extends BasePage {
     public void deleteTheList(String nameOfTheList) {
         BrowserUtils.hover(helloUser);
         YourLists.click();
+        BrowserUtils.waitForClickablility(By.xpath("//span[contains(text(),'" + nameOfTheList + "')]"), 2);
         WebElement willDeleted = Driver.get().findElement(By.xpath("//span[contains(text(),'" + nameOfTheList + "')]"));
         willDeleted.click();
         moreOptions.click();
@@ -62,6 +63,7 @@ public class YourListsPage extends BasePage {
     public void deleteTheListFromHomepage(String listName) {
         BrowserUtils.hover(helloUser);
         YourLists.click();
+        BrowserUtils.waitForClickablility(By.xpath("//span[contains(text(),'" + listName + "')]"), 2);
         Driver.get().findElement(By.xpath("//span[contains(text(),'" + listName + "')]")).click();
         moreOptions.click();
         manageList.click();

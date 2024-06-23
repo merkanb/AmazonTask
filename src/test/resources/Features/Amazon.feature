@@ -2,7 +2,7 @@ Feature: Amazon E2E List Feature
 
 # Navigate to amazon webpage (https://www.amazon.co.uk/)
 # If there are cookies - accept
-# Login with your own credentials
+# Login with valid credentials
 # Create a shopping list
 # Select a category from the tab next to the search bar
 # Verify the category is selected
