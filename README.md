@@ -6,8 +6,7 @@ Codes and Tests Prepared by:
 
 # QA Test Automation Engineer
 
-# merkanb@gmail.com   
-# www.linkedin.com          
+# merkanb@gmail.com     
 
 This file provides a basic outline to help you get started with Cucumber-JUnit & Selenium for E2E / End to End testing.
 
