@@ -1,4 +1,4 @@
-Feature: Amazon E2E Test Feature
+Feature: Amazon E2E List Feature
 
 # Navigate to amazon webpage (https://www.amazon.co.uk/)
 # If there are cookies - accept
@@ -14,8 +14,8 @@ Feature: Amazon E2E Test Feature
 # Logout
 
 
-  @wip
-  Scenario:Amazon E2E Test Scenario
+  @addFirst
+  Scenario:Amazon E2E Add Fist Product Scenario
     Given the user is on the login page
     And the user logs in successfully
     When the user creates a list named as "My Shopping List_1"
@@ -28,39 +28,43 @@ Feature: Amazon E2E Test Feature
     And the user logs out
 
 
-  @wip2
-  Scenario:Amazon Search result
+  @addWithNumber
+  Scenario:Amazon E2E Add Product With Number Scenario
     Given the user is on the login page
     And the user logs in successfully
     When the user creates a list named as "Family Wish List"
     When the user creates a list named as "Kids Wish List"
     And the user selects product category "Home & Kitchen" for search
     And the user searches for product "kettle"
-    And the user selects the number "2" product and adds it to the list
+    And the user selects the number "3" product and adds it to the list
     And the user deletes the list "Kids Wish List"
     And the user deletes the list "Family Wish List"
     And the user logs out
 
 
-  @test
-  Scenario:Amazon Search result_2
+  @addRandom
+  Scenario:Amazon E2E Add Random Product Scenario
     Given the user is on the login page
     And the user logs in successfully
     When the user creates a list named as "Company Wish List"
     And the user selects product category "Books" for search
     And the user searches for product "autobiography books bestsellers"
-    And the user selects the number "3" product and adds it to the list
+    And the user selects a RANDOM product and adds it to the list
     And the user deletes the list from Homepage "Company Wish List"
     And the user logs out
 
-  @testRandomProduct
-  Scenario:Amazon Search result_2
+
+  @addFromAnyCategories
+  Scenario:Amazon E2E Add Random Product From any Category Scenario
     Given the user is on the login page
     And the user logs in successfully
-    When the user creates a list named as "Company Wish List"
-    And the user selects product category "Books" for search
-    And the user searches for product "autobiography books bestsellers"
-    And the user selects a random product and adds it to the list
-    And the user deletes the list from Homepage "Company Wish List"
+    When the user creates a list named as "Common List"
+    And the user selects ANY category for search
+    And the user searches just a LETTER for product
+    And the user selects the number "2" product and adds it to the list
+    And the user selects ANY category for search
+    And the user searches just a LETTER for product
+    And the user selects a RANDOM product and adds it to the list
+    And the user deletes the list from Homepage "Common List"
     And the user logs out
 

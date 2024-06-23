@@ -15,7 +15,7 @@ import org.junit.runner.RunWith;
 //       dryRun = true,
         dryRun = false,
 
-        tags = "@testRandomProduct"
+        tags = "@addFirst"
 
 )
 public class CukesRunner {

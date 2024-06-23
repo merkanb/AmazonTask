@@ -5,6 +5,7 @@ import com.amazon.utilities.Driver;
 import org.junit.Assert;
 import org.openqa.selenium.By;
 import org.openqa.selenium.Keys;
+import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.FindBys;
@@ -17,6 +18,9 @@ public class ProductSearchPage extends BasePage {
 
     @FindBy(css = "#searchDropdownBox")
     public WebElement categoryDropdown;
+
+    @FindBy(css = "#searchDropdownBox>option")
+    public List<WebElement> allCategories;
 
     @FindBy(id = "twotabsearchtextbox")
     public WebElement searchBar;
@@ -32,6 +36,7 @@ public class ProductSearchPage extends BasePage {
     public WebElement firstProductInSearchResults;
 
     @FindBy(xpath = "//div[@data-component-type='s-search-result']//span[@class='a-size-medium a-color-base a-text-normal']")
+//    @FindBy(xpath = "//span[@class='a-size-base-plus a-color-base a-text-normal']")
     public List<WebElement> productList;
 
 
@@ -75,7 +80,7 @@ public class ProductSearchPage extends BasePage {
 
     Random random = new Random();
 
-    public void addRandomProductInSearchResults() {
+    public void addRandomProductInSearchResults() {          // productlist will optimized since have dif. structured categories
         int randomSelectProductIndex = random.nextInt(productList.size() - 1);
         WebElement randomSelectedProduct = Driver.get().findElement(By.xpath("(//div[@data-component-type='s-search-result'])[" + randomSelectProductIndex + "]//span[@class='a-size-medium a-color-base a-text-normal']"));
         randomSelectedProduct.click();
@@ -83,6 +88,29 @@ public class ProductSearchPage extends BasePage {
         productPage.addToListButton.click();     // if we do not mention explicitly add to which list, will add to default (1st) List...
         BrowserUtils.waitFor(2);
         productPage.continue_shopping.click();
+    }
+
+
+    public void anyCategoryForSearch() {
+        int randomCategoryIndex;
+        for (int i = 0; i < 999; i++) {
+            randomCategoryIndex = random.nextInt(allCategories.size() - 1);
+            if (18 >= randomCategoryIndex || randomCategoryIndex >= 25) {
+                Select select = new Select(categoryDropdown);
+                select.selectByIndex(randomCategoryIndex);
+                break;
+            }
+        }
+    }
+
+
+
+    public void searchJustALetter() {
+        int randomLetter = random.nextInt(65, 90);
+        String asciiString = Character.toString((char) randomLetter);
+        searchBar.clear();
+        searchBar.sendKeys(String.valueOf(asciiString));
+        searchIcon.sendKeys(Keys.ENTER);
     }
 
 

@@ -30,8 +30,20 @@ public class ProductSearchStepDefs {
         productSearchPage.addProductWithNumberInSearchResults(number);
     }
 
-    @And("the user selects a random product and adds it to the list")
+    @And("the user selects a RANDOM product and adds it to the list")
     public void theUserSelectsARandomProductAndAddsItToTheList() {
         productSearchPage.addRandomProductInSearchResults();
     }
+
+    @And("the user selects ANY category for search")
+    public void theUserSelectsANYCategoryForSearch() {
+        productSearchPage.anyCategoryForSearch();
+    }
+
+    @And("the user searches just a LETTER for product")
+    public void theUserSearchesJustALETTERForProduct() {
+        productSearchPage.searchJustALetter();
+    }
+
+
 }
