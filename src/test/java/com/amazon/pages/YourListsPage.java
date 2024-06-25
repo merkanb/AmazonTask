@@ -44,23 +44,8 @@ public class YourListsPage extends BasePage {
         BrowserUtils.waitFor(2);
     }
 
-    public void deleteTheList(String nameOfTheList) {
-        BrowserUtils.hover(helloUser);
-        YourLists.click();
-        BrowserUtils.waitForClickablility(By.xpath("//span[contains(text(),'" + nameOfTheList + "')]"), 2);
-        WebElement willDeleted = Driver.get().findElement(By.xpath("//span[contains(text(),'" + nameOfTheList + "')]"));
-        willDeleted.click();
-        moreOptions.click();
-        manageList.click();
-        BrowserUtils.hover(deleteListButton);
-        deleteListButton.click();
-        BrowserUtils.waitFor(2);
-        deleteSubmitButton.click();
-        BrowserUtils.waitFor(2);
 
-    }
-
-    public void deleteTheListFromHomepage(String listName) {
+    public void deleteTheList(String listName) {
         BrowserUtils.hover(helloUser);
         YourLists.click();
         BrowserUtils.waitForClickablility(By.xpath("//span[contains(text(),'" + listName + "')]"), 2);
@@ -68,6 +53,7 @@ public class YourListsPage extends BasePage {
         moreOptions.click();
         manageList.click();
         BrowserUtils.hover(deleteListButton);
+//        deleteListButton.click();
         BrowserUtils.clickWithJS(deleteListButton);
         BrowserUtils.waitFor(2);
         deleteSubmitButton.click();

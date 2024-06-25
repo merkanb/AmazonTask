@@ -22,7 +22,6 @@ public class LoginStepDefs {
         loginPage.login();
     }
 
-
     @And("the user logs out")
     public void theUserLogsOut() {
         loginPage.signOut();

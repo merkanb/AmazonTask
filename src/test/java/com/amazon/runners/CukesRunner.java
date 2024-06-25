@@ -15,7 +15,7 @@ import org.junit.runner.RunWith;
 //       dryRun = true,
         dryRun = false,
 
-        tags = "@addRandom"
+        tags = "@addWithNumber"
 
 )
 public class CukesRunner {

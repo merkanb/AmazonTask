@@ -16,15 +16,10 @@ public class YourListsStepDefs {
 
 
     @And("the user deletes the list {string}")
-    public void theUserDeletesTheList(String nameOfTheList) {
-        yourListsPage.deleteTheList(nameOfTheList);
+    public void theUserDeletesTheList(String listName) {
+        yourListsPage.deleteTheList(listName);
     }
 
-
-    @And("the user deletes the list from Homepage {string}")
-    public void theUserDeletesTheListFromHomepage(String listName) {
-        yourListsPage.deleteTheListFromHomepage(listName);
-    }
 
 
 }

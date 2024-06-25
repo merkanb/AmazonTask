@@ -16,6 +16,8 @@ import java.util.Random;
 
 public class ProductSearchPage extends BasePage {
 
+    ProductPage productPage = new ProductPage();
+
     @FindBy(css = "#searchDropdownBox")
     public WebElement categoryDropdown;
 
@@ -32,11 +34,13 @@ public class ProductSearchPage extends BasePage {
     public WebElement searchResultMessage;
 
 
-    @FindBy(xpath = "(//div[@data-component-type='s-search-result'])[1]//span[@class='a-size-medium a-color-base a-text-normal']")
+    //    @FindBy(xpath = "(//div[@data-component-type='s-search-result'])[1]//span[@class='a-size-medium a-color-base a-text-normal']")
+    @FindBy(xpath = "(//div[@data-component-type='s-search-result']//span[@class='a-size-medium a-color-base a-text-normal'])[1]")
     public WebElement firstProductInSearchResults;
 
+
+    //    @FindBy(xpath = "//span[@class='a-size-base-plus a-color-base a-text-normal']")
     @FindBy(xpath = "//div[@data-component-type='s-search-result']//span[@class='a-size-medium a-color-base a-text-normal']")
-//    @FindBy(xpath = "//span[@class='a-size-base-plus a-color-base a-text-normal']")
     public List<WebElement> productList;
 
 
@@ -44,13 +48,19 @@ public class ProductSearchPage extends BasePage {
     public List<WebElement> searchProductList;
 
 
-    ProductPage productPage = new ProductPage();
-
     public void selectCategoryForSearch(String category) {
         Select select = new Select(categoryDropdown);
         select.selectByVisibleText(category);
         Assert.assertEquals(category, select.getFirstSelectedOption().getText());
     }
+
+
+    public void anyCategoryForSearch() {
+        int randomCategoryIndex = random.nextInt(allCategories.size() - 1);
+        Select select = new Select(categoryDropdown);
+        select.selectByIndex(randomCategoryIndex);
+    }
+
 
     public void searchProduct(String product) {
         searchBar.sendKeys(product);
@@ -58,51 +68,44 @@ public class ProductSearchPage extends BasePage {
     }
 
     public void verifySearchResult(String product) {
+//        Assert.assertTrue("\"" +product+"\"",searchResultMessage.getText();
         Assert.assertTrue(searchResultMessage.getText().contains(product));
     }
 
     public void clickFirstProduct() {
         firstProductInSearchResults.click();
-        BrowserUtils.waitFor(2);
-        productPage.addToListButton.click();     // if we do not mention explicitly add to which list, will add to default (1st) List...
-        BrowserUtils.waitFor(2);
+//        BrowserUtils.waitFor(2);
+        productPage.addToListButton.click();
+//        BrowserUtils.waitFor(2);
         productPage.continue_shopping.click();
     }
 
+
     public void addProductWithNumberInSearchResults(String number) {
-        WebElement selectedProduct = Driver.get().findElement(By.xpath("(//div[@data-component-type='s-search-result'])[" + number + "]//span[@class='a-size-medium a-color-base a-text-normal']"));
-        selectedProduct.click();
-        BrowserUtils.waitFor(2);
-        productPage.addToListButton.click();     // if we do not mention explicitly add to which list, will add to default (1st) List...
-        BrowserUtils.waitFor(2);
+        WebElement withIndexSelectedProduct = Driver.get().findElement(By.xpath("(//div[@data-component-type='s-search-result']//span[@class='a-size-medium a-color-base a-text-normal'])[" + number + "]"));
+        withIndexSelectedProduct.click();
+//        BrowserUtils.waitFor(2);
+        productPage.addToListButton.click();
+//        BrowserUtils.waitFor(2);
         productPage.continue_shopping.click();
     }
 
     Random random = new Random();
 
-    public void addRandomProductInSearchResults() {          // productlist will optimized since have dif. structured categories
-        int randomSelectProductIndex = random.nextInt(productList.size() - 1);
-        WebElement randomSelectedProduct = Driver.get().findElement(By.xpath("(//div[@data-component-type='s-search-result'])[" + randomSelectProductIndex + "]//span[@class='a-size-medium a-color-base a-text-normal']"));
+    public void selectARandomProduct() {
+        int randomSelectProductIndex = random.nextInt(productList.size() - 1);          // productlist will optimized since have dif. structured categories
+        WebElement randomSelectedProduct = Driver.get().findElement(By.xpath("(//div[@data-component-type='s-search-result']//span[@class='a-size-medium a-color-base a-text-normal'])[\" + randomSelectProductIndex + \"]"));
         randomSelectedProduct.click();
+    }
+
+
+    public void addRandomProductInSearchResults() {
+        selectARandomProduct();
         BrowserUtils.waitFor(2);
-        productPage.addToListButton.click();     // if we do not mention explicitly add to which list, will add to default (1st) List...
+        productPage.addToListButton.click();
         BrowserUtils.waitFor(2);
         productPage.continue_shopping.click();
     }
-
-
-    public void anyCategoryForSearch() {
-        int randomCategoryIndex;
-        for (int i = 0; i < 999; i++) {
-            randomCategoryIndex = random.nextInt(allCategories.size() - 1);
-            if (18 >= randomCategoryIndex || randomCategoryIndex >= 25) {
-                Select select = new Select(categoryDropdown);
-                select.selectByIndex(randomCategoryIndex);
-                break;
-            }
-        }
-    }
-
 
 
     public void searchJustALetter() {
@@ -112,11 +115,6 @@ public class ProductSearchPage extends BasePage {
         searchBar.sendKeys(String.valueOf(asciiString));
         searchIcon.sendKeys(Keys.ENTER);
     }
-
-
-//        productPage.viewYourList.click();
-//        productPage.wishListDropDown.click();  // if we have >1 list, and want to add to at a particular one, then can use this two lines
-//        productPage.selectYourList.click();
 
 
 }
