@@ -31,15 +31,21 @@ Feature: Amazon E2E List Feature
 
 
   @addWithNumber
-  Scenario:Amazon E2E Add Product With Number Scenario
+  Scenario Outline:Amazon E2E Add Product With Number Scenario Outline
     When the user creates a list named as "Family Wish List"
     When the user creates a list named as "Kids Wish List"
     And the user selects product category "Home & Kitchen" for search
-    And the user searches for product "kettle"
-    And the user selects the number "3" product and adds it to the list
-    And the user deletes the list "Kids Wish List"
+    And the user searches for product "<Home & Kitchen Product>"
+    And the user selects the "<number>" product and adds it to the list
     And the user deletes the list "Family Wish List"
+    And the user deletes the list "Kids Wish List"
     And the user logs out
+
+    Examples:
+      | Home & Kitchen Product | number |
+      | kids tablet            | 3      |
+      | ice cube maker         | 2      |
+      | kettles electric       | 3      |
 
 
   @addRandom
@@ -72,7 +78,7 @@ Feature: Amazon E2E List Feature
     When the user creates a list named as "Private List"
     And the user selects product category "Books" for search
     And the user searches just a LETTER for product
-    And the user selects the number "2" product and adds it to the list
+    And the user selects the "2" product and adds it to the list
     And the user selects product category "Books" for search
     And the user searches just a LETTER for product
     And the user selects a RANDOM product and adds it to the "Private List"
@@ -87,7 +93,7 @@ Feature: Amazon E2E List Feature
     When the user creates a list named as "Private List"
 #    And the user selects ANY category for search
     And the user searches just a LETTER for product
-    And the user selects the number "2" product and adds it to the list
+    And the user selects the "2" product and adds it to the list
 #    And the user selects ANY category for search
     And the user searches just a LETTER for product
     And the user selects a RANDOM product and adds it to the "Private List"

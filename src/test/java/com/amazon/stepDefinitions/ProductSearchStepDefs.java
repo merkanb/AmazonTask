@@ -32,10 +32,16 @@ public class ProductSearchStepDefs {
         productSearchPage.clickFirstProduct();
     }
 
-
-    @And("the user selects the number {string} product and adds it to the list")
-    public void theUserSelectsTheNumberProductAndAddsItToTheList(String number) {
+    @And("the user selects the {string} product and adds it to the list")
+    public void theUserSelectsTheProductAndAddsItToTheList(String number) {
         productSearchPage.addProductWithNumberInSearchResults(number);
+    }
+
+    @And("the user selects the {string} product and adds it to the {string}")
+    public void theUserSelectsTheProductAndAddsItToThe(String number, String WishListName) {
+        WebElement withIndexSelectedProduct = Driver.get().findElement(By.xpath("(//div[@data-component-type='s-search-result']//span[@class='a-size-medium a-color-base a-text-normal'])[" + number + "]"));
+        withIndexSelectedProduct.click();
+        productPage.selectAndAddListFromAddToListDropDown(WishListName);
     }
 
     @And("the user selects a RANDOM product and adds it to the list")

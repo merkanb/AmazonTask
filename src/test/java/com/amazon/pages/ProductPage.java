@@ -28,6 +28,7 @@ public class ProductPage extends BasePage {
         WebElement selectedList = Driver.get().findElement(By.xpath("//img[@alt='" + listName + "']"));
         selectedList.click();
         continue_shopping.click();
+        BrowserUtils.waitFor(2);
     }
 
 }
