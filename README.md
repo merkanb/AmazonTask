@@ -19,27 +19,27 @@ password=1234567Aa
 This project is a Cucumber BDD Test Framework in Java aiming testing www.amazon.co.uk Web Application with Cucumber-JUnit & Selenium with an approach of End to End Testing. 
 Mostly focused on this web application: Category, Search Product and Wish List functionalities. (Wish List creating, adding product to list, Selecting any Category and any Product than adding to the list) 
 Configuration properties file contains the url and valid credentials to be used in testing. Runners package includes CukesRunner class which triggers the tagged test scenarios and stepDefinitions package include related step definitions classes in which the hard coding for the scenarios defined.
-Used Page Object Model pages, predefined locators and methods in order to achieve high usability and also maintainability. 
+Used Page Object Model pages, predefined locators and methods in order to achieve high reusability and also maintainability. 
 
 # General aspects of the project are:
-• I built my framework using Java Programming Language.
-• I used maven as a build automation tool for my java project.
-• I used Cucumber-Junit and Cucumber runner to orchestrate tests.
-• Inside the Cucumber runner, I used glues to connect feature files to step definitions.
-• I added the report plugin to Cucumber Runner to generate Json and HTML report.
-• I have a utilities package, which contains utility classes such as Configuration Reader.
-• I am using Page Object Modelling to enhance test maintenance and reducing code duplication. This is one of the most famous Selenium approaches.
-• I use Page Object Classes to store and identify the elements that I work on.
-• I use the PageFactory class and initElements method to initialize them.
-• I am using Cucumber and Gherkin language for non-technical people to understand what is going on in testing.
-• To interact with browsers, I am utilizing Selenium WebDriver.
-• I used the Singleton pattern by declaring constructor of class as private so that no one instantiates class outside of it. And declared a static method with return type as object of class which should check if class is already instantiated once.
-• I have created my test cases in the feature files.
-• I use hook class as pre-and post-test implementations.
-• Step Definitions folder is the place where my actual test scripts are.
-• For assertions/verifications, to compare expected and actual results I utilize Junit assertions.
-• I also use tags for tests that I want to run.
-• My framework is easy to maintain since I have elements stored in one centralized place. If any changes happen on the application about the elements, I know where to go and how to fix it to run test scripts correctly.
+• Programming language: This framework using Java Programming Language.
+• Used maven as a build automation tool for java project.
+• Used Cucumber-Junit and Cucumber runner to orchestrate tests.
+• Inside the Cucumber runner, it is used glues to connect feature files to step definitions.
+• Added the report plugin to Cucumber Runner to generate Json and HTML report.
+• Utilities package, which contains utility classes such as Configuration Reader.
+• Using Page Object Modelling to enhance test maintenance and reducing code duplication. This is one of the most famous Selenium approaches.
+• Page Object Classes also store and identify the elements that have been worked on.
+• Used PageFactory class initElements method to initialize these elements.
+• Cucumber and Gherkin language for non-technical people to understand the test cases.
+• To interact with browsers, used Selenium WebDriver.
+• Used the Singleton pattern by declaring constructor of class as private so that no one instantiates class outside of it. And declared a static method with return type as object of class which should check if class is already instantiated once.
+• Created  test cases in the feature files.
+• Hook class as pre-test and post-test implementations.
+• Step Definitions folder is the place where actual test scripts are.
+• For assertions/verifications, to compare expected and actual results utilized Junit assertions.
+• Used tags for tests whereever want to run.
+• This framework is easy to maintain since  have elements stored in one centralized place. If any changes happen on the application about the elements, it is easy to know where to go and how to fix it to run test scripts correctly.
 
 
  # This E2E Test mainly have following steps in a bunch of Scenarios: 
