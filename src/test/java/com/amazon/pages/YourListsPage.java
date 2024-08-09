@@ -13,7 +13,7 @@ public class YourListsPage extends BasePage {
     @FindBy(css = "#list-name")
     public WebElement listNameInput;
 
-    @FindBy(xpath = "//span[text()='Create List']/preceding-sibling::input")
+    @FindBy(xpath = "//span[text()='Create']/preceding-sibling::input")
     public WebElement createListButtonOnPopUp;
 
     @FindBy(xpath = "//img[@aria-label='More options']")
